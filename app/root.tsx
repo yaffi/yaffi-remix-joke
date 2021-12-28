@@ -1,5 +1,5 @@
-import type { LinksFunction } from "remix";
-import { Links, LiveReload, Outlet, useCatch } from "remix";
+import type { LinksFunction, MetaFunction } from "remix";
+import { Links, LiveReload, Outlet, useCatch, Meta } from "remix";
 
 import globalStylesUrl from "./styles/global.css";
 import globalMediumStylesUrl from "./styles/global-medium.css";
@@ -22,6 +22,20 @@ export const links: LinksFunction = () => {
       media: "print, (min-width: 1024px)"
     },
   ]
+}
+
+export const meta: MetaFunction = () => {
+  const description = `Learn Remix and Laugh art the same time!`;
+  return {
+    description,
+    keywords: "Remix,jokes",
+    "twitter:image": "https://remix-jokes.lol/social.png",
+    "twitter:card": "summary_large_image",
+    "twitter:creator": "@remix_run",
+    "twitter:site": "@remix_run",
+    "twitter:title": "Remix Jokes",
+    "twitter:description": description
+  }
 }
 
 function Document({
@@ -53,6 +67,7 @@ export default function App() {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
+        <Meta />
         <title>Remix: So great, it's funny!</title>
         <Links />
       </head>
