@@ -24,6 +24,14 @@ type LoaderData = {
   jokeListItems: Array<{ id: string; name: string }>;
 };
 
+export function ErrorBoundary() {
+  return (
+    <div className="error-container">
+      Something unexpected went wrong. Sorry about that.
+    </div>
+  );
+}
+
 export const loader: LoaderFunction = async ({
   request
 }) => {
