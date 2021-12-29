@@ -1,5 +1,5 @@
 import type { LinksFunction, MetaFunction } from "remix";
-import { Links, LiveReload, Outlet, useCatch, Meta } from "remix";
+import { Links, LiveReload, Outlet, useCatch, Meta, Scripts } from "remix";
 
 import globalStylesUrl from "./styles/global.css";
 import globalMediumStylesUrl from "./styles/global-medium.css";
@@ -54,6 +54,7 @@ function Document({
       </head>
       <body>
         {children}
+        <Scripts />
         {process.env.NODE_ENV === "development" ? (
           <LiveReload />
         ) : null}
@@ -64,20 +65,9 @@ function Document({
 
 export default function App() {
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <Meta />
-        <title>Remix: So great, it's funny!</title>
-        <Links />
-      </head>
-      <body>
-        <Outlet />
-        {process.env.NODE_ENV === "development" ? (
-          <LiveReload />
-        ) : null}
-      </body>
-    </html>
+    <Document>
+      <Outlet />
+    </Document>
   );
 }
 
